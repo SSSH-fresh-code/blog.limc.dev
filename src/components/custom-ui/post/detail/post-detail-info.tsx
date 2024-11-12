@@ -6,9 +6,9 @@ function PostDetailInfo({
 	time,
 }: { author: ReadUserDto; time: string }) {
 	return (
-		<div className="flex justify-between text-[16px] text-gray-400 font-light date">
+		<div className="flex justify-between text-[13px] text-gray-400 font-light date">
 			<span className="flex items-center">
-				<AvatarIcon className="mr-1 font-bold w-5 h-5" /> {author.name}
+				<AvatarIcon className="mr-1 w-5 h-5" /> {author.name}
 			</span>
 			<span className="flex items-center">
 				<TimerIcon className="mr-1 font-bold" />{" "}

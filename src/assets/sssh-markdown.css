@@ -41,4 +41,12 @@
 	.markdown-body {
 		padding: 15px;
 	}
+
+	.markdown-body h1 {
+		font-size: 1.5em !important;
+	}
+
+	.markdown-body p {
+		font-size: 15px;
+	}
 }

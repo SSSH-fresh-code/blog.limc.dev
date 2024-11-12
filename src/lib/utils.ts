@@ -33,3 +33,9 @@ export function hasDiff(
 
 	return false;
 }
+
+export function truncate(str: string, length: number) {
+	const substringStr = str.substring(0, length).trim();
+
+	return `${substringStr}${str.length > length ? "..." : ""}`;
+}
