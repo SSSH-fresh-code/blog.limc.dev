@@ -7,7 +7,7 @@ const PostDetailEmpty = lazy(() => import("./post/detail/post-detail-empty"));
 function MainPage() {
 	const { data } = Route.useLoaderData();
 
-	if (!data) return <PostDetailEmpty />;
+	if (!data || data.data.length < 1) return <PostDetailEmpty />;
 
 	return <PostDetail post={data.data[0]} />;
 }
