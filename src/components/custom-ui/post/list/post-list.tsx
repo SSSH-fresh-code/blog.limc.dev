@@ -13,17 +13,36 @@ import { convertUnderbar } from "sssh-library";
 function PostList() {
 	const navigate = useNavigate();
 	const { data } = Route.useLoaderData();
-	const { where__topicId, where__seriesId, where__authorName } =
-		Route.useLoaderDeps();
-
-	const isFiltering =
-		!!where__topicId || !!where__seriesId || !!where__authorName;
+	const deps = Route.useLoaderDeps();
 
 	if (!data) return <></>;
 
+	let isFiltering = false;
+	const param = Object.keys(deps)
+		.map((key) => {
+			const depsKey = [
+				"where__topicId",
+				"where__seriesId",
+				"where__authorName",
+			];
+
+			if (depsKey.includes(key)) {
+				const value = deps[key];
+
+				if (value) {
+					isFiltering = true;
+					return `${key}=${value}`;
+				}
+			}
+
+			return "";
+		})
+		.filter((text) => text !== "")
+		.join("&");
+
 	return (
 		<>
-			{where__seriesId && (
+			{deps.where__seriesId && (
 				<>
 					<div className="">
 						<span
@@ -42,7 +61,7 @@ function PostList() {
 					<hr className="my-3" />
 				</>
 			)}
-			{where__topicId && (
+			{deps.where__topicId && (
 				<>
 					<div className="">
 						<span
@@ -80,6 +99,7 @@ function PostList() {
 				data={data}
 				columns={PostListColumn}
 				options={PostListOption}
+				param={param}
 			/>
 		</>
 	);

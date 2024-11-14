@@ -33,6 +33,7 @@ interface SsshDataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data?: Page<TData>;
 	options: SsshDataTableOptions<TData>;
+	param?: string;
 }
 
 export function SsshDataTable<TData, TValue>({
@@ -42,6 +43,7 @@ export function SsshDataTable<TData, TValue>({
 		info: { current: 1, last: 1, total: 0, take: 10 },
 	},
 	options,
+	param,
 }: SsshDataTableProps<TData, TValue>) {
 	const navigate = useNavigate();
 
@@ -133,7 +135,7 @@ export function SsshDataTable<TData, TValue>({
 					</TableBody>
 				</Table>
 			</div>
-			<SsshDataTablePagination info={info} href={options.href} />
+			<SsshDataTablePagination info={info} href={options.href} param={param} />
 		</>
 	);
 }
@@ -161,7 +163,12 @@ export function SsshDataTableHeader({
 export function SsshDataTablePagination({
 	info,
 	href,
-}: { info: PageInfo; href: string }) {
+	param,
+}: {
+	info: PageInfo;
+	href: string;
+	param?: string;
+}) {
 	const { current, last, total } = info;
 
 	if (total < 1 || current === 0) return <></>;
@@ -170,13 +177,16 @@ export function SsshDataTablePagination({
 	const hasNext = current < last;
 	const isFirst = isLast && current === 1;
 
+	const getHref = (page: number) =>
+		`${href}?page=${page}${param ? `&${param}` : ""}`;
+
 	return (
 		<div className="mt-3">
 			<Pagination>
 				<PaginationContent>
 					{!isFirst && (
 						<PaginationItem className="rounded-md hover:bg-gray-200">
-							<PaginationPrevious href={`${href}?page=${current - 1}`} />
+							<PaginationPrevious href={getHref(current - 1)} />
 						</PaginationItem>
 					)}
 					{[current - 1, current, current + 1]
@@ -189,12 +199,12 @@ export function SsshDataTablePagination({
                     rounded-md hover:bg-gray-200 p-0.5
                `}
 							>
-								<PaginationLink href={`${href}?page=${i}`}>{i}</PaginationLink>
+								<PaginationLink href={getHref(i)}>{i}</PaginationLink>
 							</PaginationItem>
 						))}
 					{hasNext && (
 						<PaginationItem className="rounded-md hover:bg-gray-200">
-							<PaginationNext href={`${href}?page=${current + 1}`} />
+							<PaginationNext href={getHref(current + 1)} />
 						</PaginationItem>
 					)}
 				</PaginationContent>
