@@ -12,18 +12,18 @@ const PostDetailThumbnail = lazy(() => import("./post-detail-thumbnail"));
 function PostDetail({ post }: { post: ReadPostDto }) {
 	return (
 		<div className="markdown-body">
-			{post.thumbnail && (
-				<PostDetailThumbnail
-					href={post.thumbnail}
-					alt={`${post.title}-썸네일`}
-				/>
-			)}
 			<div className="flex space-x-1">
 				<PostDetailTopic topic={post.topic} />
 				{post.series && <PostDetailSeries series={post.series} />}
 			</div>
 			<PostDetailTitle title={post.title} />
 			<PostDetailInfo author={post.author} time={post.createdAt} />
+			{post.thumbnail && (
+				<PostDetailThumbnail
+					href={post.thumbnail}
+					alt={`${post.title}-썸네일`}
+				/>
+			)}
 			<PostDetailContent content={post.content} />
 		</div>
 	);
