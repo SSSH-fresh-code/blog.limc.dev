@@ -10,168 +10,168 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index.route";
-import { Route as TopicIndexRouteImport } from "./routes/topic/index.route";
-import { Route as SeriesIndexRouteImport } from "./routes/series/index.route";
-import { Route as PostIndexRouteImport } from "./routes/post/index.route";
-import { Route as DevlogIndexRouteImport } from "./routes/devlog/index.route";
-import { Route as PostTitleIndexRouteImport } from "./routes/post/$title/index.route";
+import { Route as rootRoute } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index.route'
+import { Route as TopicIndexRouteImport } from './routes/topic/index.route'
+import { Route as SeriesIndexRouteImport } from './routes/series/index.route'
+import { Route as PostIndexRouteImport } from './routes/post/index.route'
+import { Route as DevlogIndexRouteImport } from './routes/devlog/index.route'
+import { Route as PostTitleIndexRouteImport } from './routes/post/$title/index.route'
 
 // Create/Update Routes
 
 const IndexRouteRoute = IndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const TopicIndexRouteRoute = TopicIndexRouteImport.update({
-	id: "/topic/",
-	path: "/topic/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/topic/',
+  path: '/topic/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SeriesIndexRouteRoute = SeriesIndexRouteImport.update({
-	id: "/series/",
-	path: "/series/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/series/',
+  path: '/series/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const PostIndexRouteRoute = PostIndexRouteImport.update({
-	id: "/post/",
-	path: "/post/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/post/',
+  path: '/post/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const DevlogIndexRouteRoute = DevlogIndexRouteImport.update({
-	id: "/devlog/",
-	path: "/devlog/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/devlog/',
+  path: '/devlog/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const PostTitleIndexRouteRoute = PostTitleIndexRouteImport.update({
-	id: "/post/$title/",
-	path: "/post/$title/",
-	getParentRoute: () => rootRoute,
-} as unknown);
+  id: '/post/$title/',
+  path: '/post/$title/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
-	interface FileRoutesByPath {
-		"/": {
-			id: "/";
-			path: "/";
-			fullPath: "/";
-			preLoaderRoute: typeof IndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/devlog/": {
-			id: "/devlog/";
-			path: "/devlog";
-			fullPath: "/devlog";
-			preLoaderRoute: typeof DevlogIndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/post/": {
-			id: "/post/";
-			path: "/post";
-			fullPath: "/post";
-			preLoaderRoute: typeof PostIndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/series/": {
-			id: "/series/";
-			path: "/series";
-			fullPath: "/series";
-			preLoaderRoute: typeof SeriesIndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/topic/": {
-			id: "/topic/";
-			path: "/topic";
-			fullPath: "/topic";
-			preLoaderRoute: typeof TopicIndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/post/$title/": {
-			id: "/post/$title/";
-			path: "/post/$title";
-			fullPath: "/post/$title";
-			preLoaderRoute: typeof PostTitleIndexRouteImport;
-			parentRoute: typeof rootRoute;
-		};
-	}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/devlog/': {
+      id: '/devlog/'
+      path: '/devlog'
+      fullPath: '/devlog'
+      preLoaderRoute: typeof DevlogIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/post/': {
+      id: '/post/'
+      path: '/post'
+      fullPath: '/post'
+      preLoaderRoute: typeof PostIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/series/': {
+      id: '/series/'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/topic/': {
+      id: '/topic/'
+      path: '/topic'
+      fullPath: '/topic'
+      preLoaderRoute: typeof TopicIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/post/$title/': {
+      id: '/post/$title/'
+      path: '/post/$title'
+      fullPath: '/post/$title'
+      preLoaderRoute: typeof PostTitleIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
+  }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-	"/": typeof IndexRouteRoute;
-	"/devlog": typeof DevlogIndexRouteRoute;
-	"/post": typeof PostIndexRouteRoute;
-	"/series": typeof SeriesIndexRouteRoute;
-	"/topic": typeof TopicIndexRouteRoute;
-	"/post/$title": typeof PostTitleIndexRouteRoute;
+  '/': typeof IndexRouteRoute
+  '/devlog': typeof DevlogIndexRouteRoute
+  '/post': typeof PostIndexRouteRoute
+  '/series': typeof SeriesIndexRouteRoute
+  '/topic': typeof TopicIndexRouteRoute
+  '/post/$title': typeof PostTitleIndexRouteRoute
 }
 
 export interface FileRoutesByTo {
-	"/": typeof IndexRouteRoute;
-	"/devlog": typeof DevlogIndexRouteRoute;
-	"/post": typeof PostIndexRouteRoute;
-	"/series": typeof SeriesIndexRouteRoute;
-	"/topic": typeof TopicIndexRouteRoute;
-	"/post/$title": typeof PostTitleIndexRouteRoute;
+  '/': typeof IndexRouteRoute
+  '/devlog': typeof DevlogIndexRouteRoute
+  '/post': typeof PostIndexRouteRoute
+  '/series': typeof SeriesIndexRouteRoute
+  '/topic': typeof TopicIndexRouteRoute
+  '/post/$title': typeof PostTitleIndexRouteRoute
 }
 
 export interface FileRoutesById {
-	__root__: typeof rootRoute;
-	"/": typeof IndexRouteRoute;
-	"/devlog/": typeof DevlogIndexRouteRoute;
-	"/post/": typeof PostIndexRouteRoute;
-	"/series/": typeof SeriesIndexRouteRoute;
-	"/topic/": typeof TopicIndexRouteRoute;
-	"/post/$title/": typeof PostTitleIndexRouteRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRouteRoute
+  '/devlog/': typeof DevlogIndexRouteRoute
+  '/post/': typeof PostIndexRouteRoute
+  '/series/': typeof SeriesIndexRouteRoute
+  '/topic/': typeof TopicIndexRouteRoute
+  '/post/$title/': typeof PostTitleIndexRouteRoute
 }
 
 export interface FileRouteTypes {
-	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths: "/" | "/devlog" | "/post" | "/series" | "/topic" | "/post/$title";
-	fileRoutesByTo: FileRoutesByTo;
-	to: "/" | "/devlog" | "/post" | "/series" | "/topic" | "/post/$title";
-	id:
-		| "__root__"
-		| "/"
-		| "/devlog/"
-		| "/post/"
-		| "/series/"
-		| "/topic/"
-		| "/post/$title/";
-	fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/devlog' | '/post' | '/series' | '/topic' | '/post/$title'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/devlog' | '/post' | '/series' | '/topic' | '/post/$title'
+  id:
+    | '__root__'
+    | '/'
+    | '/devlog/'
+    | '/post/'
+    | '/series/'
+    | '/topic/'
+    | '/post/$title/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-	IndexRouteRoute: typeof IndexRouteRoute;
-	DevlogIndexRouteRoute: typeof DevlogIndexRouteRoute;
-	PostIndexRouteRoute: typeof PostIndexRouteRoute;
-	SeriesIndexRouteRoute: typeof SeriesIndexRouteRoute;
-	TopicIndexRouteRoute: typeof TopicIndexRouteRoute;
-	PostTitleIndexRouteRoute: typeof PostTitleIndexRouteRoute;
+  IndexRouteRoute: typeof IndexRouteRoute
+  DevlogIndexRouteRoute: typeof DevlogIndexRouteRoute
+  PostIndexRouteRoute: typeof PostIndexRouteRoute
+  SeriesIndexRouteRoute: typeof SeriesIndexRouteRoute
+  TopicIndexRouteRoute: typeof TopicIndexRouteRoute
+  PostTitleIndexRouteRoute: typeof PostTitleIndexRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-	IndexRouteRoute: IndexRouteRoute,
-	DevlogIndexRouteRoute: DevlogIndexRouteRoute,
-	PostIndexRouteRoute: PostIndexRouteRoute,
-	SeriesIndexRouteRoute: SeriesIndexRouteRoute,
-	TopicIndexRouteRoute: TopicIndexRouteRoute,
-	PostTitleIndexRouteRoute: PostTitleIndexRouteRoute,
-};
+  IndexRouteRoute: IndexRouteRoute,
+  DevlogIndexRouteRoute: DevlogIndexRouteRoute,
+  PostIndexRouteRoute: PostIndexRouteRoute,
+  SeriesIndexRouteRoute: SeriesIndexRouteRoute,
+  TopicIndexRouteRoute: TopicIndexRouteRoute,
+  PostTitleIndexRouteRoute: PostTitleIndexRouteRoute,
+}
 
 export const routeTree = rootRoute
-	._addFileChildren(rootRouteChildren)
-	._addFileTypes<FileRouteTypes>();
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {

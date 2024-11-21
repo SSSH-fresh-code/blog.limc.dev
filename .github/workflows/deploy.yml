@@ -14,26 +14,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Enable verbose logging
-      run: |
-        set -x
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up SSH for deployment
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Create SSH directory and set permissions
+    - name: Install dependencies and build
       run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+        corepack enable
+        corepack prepare pnpm@latest --activate
+        pnpm install
+        pnpm run build
+
+    - name: Create .env file
+      run: |
+        echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
+    
     - name: Add known hosts (to avoid host key verification)
       run: |
         ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_IP }} >> ~/.ssh/known_hosts
-        
-    - name: Deploy to server
-      run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }} 'cd ~/blog && zsh /scripts/blog/build_push.sh'
+    
+    - name: Transfer build files to server
+      uses: appleboy/scp-action@v0.2.3
+      with:
+        host: ${{ secrets.SSH_IP }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: dist/ # React 빌드 결과 폴더
+        target: /var/www/html/temp_build/
+
+    - name: Run update script on server
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          zsh /scripts/blog/build_push.sh
