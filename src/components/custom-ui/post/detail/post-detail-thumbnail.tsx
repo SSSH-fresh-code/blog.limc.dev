@@ -7,6 +7,7 @@ function PostDetailThumbnail({ href, alt }: { href: string; alt: string }) {
 				<img
 					alt={alt}
 					src={href}
+					loading="lazy"
 					className="h-full w-full rounded-md object-cover"
 				/>
 			</AspectRatio>
