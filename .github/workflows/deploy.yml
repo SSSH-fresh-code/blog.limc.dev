@@ -4,12 +4,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-    paths-ignore:
-      - '**/*.md'
+
 jobs:
   deploy:
     if: github.event.pull_request.merged == true || github.event_name == 'push'
