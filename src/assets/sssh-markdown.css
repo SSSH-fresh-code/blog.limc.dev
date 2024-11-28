@@ -51,6 +51,13 @@
 	font-size: 18px;
 }
 
+.markdown-body pre {
+	width: 100%;
+	white-space: pre-wrap; /* 줄 바꿈을 허용 */
+	word-wrap: break-word; /* 긴 단어를 다음 줄로 넘김 */
+	overflow-x: auto; /* 가로 스크롤 추가 */
+}
+
 @media (max-width: 767px) {
 	.markdown-body {
 		padding: 15px;
@@ -62,5 +69,9 @@
 
 	.markdown-body p {
 		font-size: 15px;
+	}
+
+	.markdown-body pre {
+		width: 90vw;
 	}
 }
