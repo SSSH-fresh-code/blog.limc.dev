@@ -4,3 +4,4 @@ Disallow: /
 Allow: /
 Allow: /post/
 Allow: /post/*
+
