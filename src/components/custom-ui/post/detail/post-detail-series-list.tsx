@@ -18,7 +18,7 @@ function PostDetailSeriesList({
 	series,
 	postTitle,
 	postThumbnail,
-}: { series: ReadSeriesDto; postTitle: string; postThumbnail: string }) {
+}: { series: ReadSeriesDto; postTitle: string; postThumbnail?: string }) {
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 	const [postList, setPostList] = useState<ReadPostDto[]>([]);
