@@ -15,16 +15,16 @@ function PostDetailContent({ content }: { content: string }) {
 							loading="lazy"
 							style={{ margin: "0 auto", objectFit: "scale-down" }}
 						/>
-						<div
+						<span
 							style={{
 								textAlign: "center",
 								color: "gray",
-								fontSize: "0.9em",
+								fontSize: "0.8em",
 								paddingBottom: "10px",
 							}}
 						>
 							{props.alt}
-						</div>
+						</span>
 					</>
 				),
 			}}
