@@ -15,7 +15,7 @@ export const Route = createFileRoute("/post/")({
 	validateSearch: (search: Record<string, unknown>) => {
 		const result: Record<string, unknown> = {
 			page: Number(search.page ?? 1),
-			take: Number(search.take ?? 2),
+			take: Number(search.take ?? 10),
 			orderby: search.oderby ? String(search.orderby) : "createdAt",
 			direction: search.direction ? String(search.direction) : "desc",
 		};
