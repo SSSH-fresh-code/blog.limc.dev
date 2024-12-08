@@ -1,6 +1,7 @@
 import "github-markdown-css";
 import { lazy } from "react";
 import type { ReadPostDto } from "sssh-library";
+import PostDetailSeriesList from "./post-detail-series-list";
 
 const PostDetailInfo = lazy(() => import("./post-detail-info"));
 const PostDetailTopic = lazy(() => import("./post-detail-topic"));
@@ -18,6 +19,13 @@ function PostDetail({ post }: { post: ReadPostDto }) {
 			</div>
 			<PostDetailTitle title={post.title} />
 			<PostDetailInfo author={post.author} time={post.createdAt} />
+			{post.series && (
+				<PostDetailSeriesList
+					series={post.series}
+					postTitle={post.title}
+					postThumbnail={post.thumbnail}
+				/>
+			)}
 			{post.thumbnail && (
 				<PostDetailThumbnail
 					href={post.thumbnail}
