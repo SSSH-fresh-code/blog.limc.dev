@@ -81,7 +81,7 @@ export const Route = createFileRoute("/post/$title/")({
 						<meta property="og:image" content={data.thumbnail} />
 					)}
 				</Helmet>
-				<PostDetail post={data} />;
+				<PostDetail post={data} />
 			</>
 		);
 	},
