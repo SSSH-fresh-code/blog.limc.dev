@@ -1,51 +1,94 @@
-# React + TypeScript + Vite
+# 싱싱상회 블로그
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+기술 블로그 프로젝트입니다.
 
-Currently, two official plugins are available:
+## 기술 스택
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend
+- React 18.3
+- TypeScript
+- TanStack
+  - Router
+  - Query
+  - Table
+- Tailwind CSS
+- Shadcn/ui
 
-## Expanding the ESLint configuration
+### 배포
+- GitHub Actions
+- Nginx
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 주요 기능
 
-- Configure the top-level `parserOptions` property like this:
+### 게시글
+- 게시글 목록 조회
+- 게시글 상세 조회
+- 마크다운 렌더링
+- 코드 하이라이팅
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 연재물
+- 연재물 목록 조회
+- 연재물별 게시글 목록
+
+### 주제
+- 주제 목록 조회
+- 주제별 게시글/연재물 목록
+
+## 프로젝트 구조
+
+```tree
+src/
+├── assets/         # 정적 자원
+├── components/     # 컴포넌트
+│   ├── custom-ui/  # 커스텀 컴포넌트
+│   └── ui/         # Shadcn/ui 컴포넌트
+├── lib/           # 유틸리티
+│   ├── api/       # API 관련 모듈
+│   ├── schema/    # 스키마 정의
+│   ├── store/     # 상태 관리
+│   └── utils.ts   # 유틸리티 함수
+└── routes/        # 라우트 정의
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 시작하기
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 요구사항
+- Node.js 20.x
+- pnpm 9.x
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 설치
+```bash
+# 패키지 설치
+pnpm install
+
+# 개발 서버 실행
+pnpm dev
+
+# 빌드
+pnpm build
 ```
-# OFFICE_F
+
+### 환경 변수
+```bash
+VITE_API_URL=     # API 서버 주소
+```
+
+## 배포
+
+main 브랜치에 push 시 GitHub Actions를 통해 자동 배포됩니다.
+
+```yaml:.github/workflows/deploy.yml
+startLine: 1
+endLine: 48
+```
+
+## 라이선스
+
+MIT License
+
+## 개발일지
+
+```typescript:src/components/custom-ui/devlog/dev-log.tsx
+startLine: 4
+endLine: 37
+```
